@@ -18,8 +18,11 @@ function platscuisines_V01(){
      */
 
     // Déclaration des variables
-    $commande[12][4] = {{0,0,1,2}, {}};
-    echo $commande[1];
+    $commande = array("Chipirons"=>array(1=>0,
+                                        2=>0,
+                                        4=>1,
+                                        8=>2));
+    echo $commande["Chipirons"][4];
     //On calcule le prix d'une facture
 
 }
