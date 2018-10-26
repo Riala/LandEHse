@@ -1,4 +1,4 @@
 <?php
     include 'plats.php';
 
-    platscuisines_V01();
+    platscuisines_V02();

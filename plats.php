@@ -150,10 +150,14 @@ function platscuisines_V02(){
                 "Pastis"=>array(4 => 11.5,
                                       8 => 22));
 
-    echo "Chipirons : " . $commande["Chipirons"][4] . " prix " . $prix["Chipirons"][4];
+
 
     //On calcule le prix d'une facture
-    foreach($commande as $une_commande){
+    foreach($commande as $plat=>$une_commande){
+        foreach($commande[$plat] as $qte => $qte_prix){
 
+           $prixTotal += $commande[$plat][$qte] * $prix[$plat][$qte];
+        }
     }
+    echo "Prix total : " . $prixTotal;
 }
