@@ -129,3 +129,5 @@ function platscuisines_V03(){
 
     echo "Prix total : " . $prixTotal;
 }
+
+//Ceci est un commentaire ajouté par le contributeur Jean AGUIRRE
