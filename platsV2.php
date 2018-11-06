@@ -222,27 +222,31 @@ function platscuisines_V03(){
      */
 
     // Déclaration et initialisation des variables
+
+    //Entier de récupération du numéro de commande
+    $numCommande = $_POST['numCommande'];
+    echo $numCommande;
     // Float contenant le prix total de la commande
     $prixTotalCommande = 0;
 
     //On calcule le prix d'une
     //On parcourt chaque ligne
-    for ($i = 0; $i <= 8; $i++)
-    {
-    	for ($j = 0; $j <=3; $j++){
-    	$prixproduit=$commande[$i][$j]*$prix[$i][$j];
-    	$PrixTotalProduit[$i][$j]=$prixproduit;
-
-    	}
-    }
-
-    for ($i = 0; $i <= 8; $i++)
-    {
-    	for ($j = 0; $j <=3; $j++){
-    	$prixTotalCommande=$prixTotalCommande+$PrixTotalProduit[$i][$j];
-
-    	}
-    }
+    // for ($i = 0; $i <= 8; $i++)
+    // {
+    // 	for ($j = 0; $j <=3; $j++){
+    // 	$prixproduit=$commande[$i][$j]*$prix[$i][$j];
+    // 	$PrixTotalProduit[$i][$j]=$prixproduit;
+    //
+    // 	}
+    // }
+    //
+    // for ($i = 0; $i <= 8; $i++)
+    // {
+    // 	for ($j = 0; $j <=3; $j++){
+    // 	$prixTotalCommande=$prixTotalCommande+$PrixTotalProduit[$i][$j];
+    //
+    // 	}
+    // }
     //On affiche le prix total
-    echo "Prix total : " . $prixTotalCommande;
+    //echo "Prix total : " . $prixTotalCommande;
 }
