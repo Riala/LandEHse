@@ -217,7 +217,7 @@ for ($i = 0; $i <= 8; $i++)
 function platscuisines_V03(){
     /* Programme servant au calcul de la tendance en fonction des critères utilisateur avec connexion à la base de données
      * Auteurs : Jean AGUIRRE et Maialen TEILLERY
-     * Date : 24/10/2018
+     * Date : 09/11/2018
      * Tendance : pas encore calculée
      */
 
@@ -228,10 +228,10 @@ function platscuisines_V03(){
 	$pass = 'root';
 	//String contenant le nom de la base de données utilisée
 	$bd = 'bd_cdpplatscuisines';
-    //Entier de récupération du numéro de commande
-    $numCommande = $_POST['numCommande'];
-    // Float contenant le prix total de la commande
-    $prixTotalCommande = 0;
+  //Entier de récupération du numéro de commande
+  $numCommande = $_POST['numCommande'];
+  // Float contenant le prix total de la commande
+  $prixTotalCommande = 0;
 
 	try {
 		$connexion = new PDO('mysql:host=localhost;dbname='.$bd, $user, $pass);
@@ -239,11 +239,17 @@ function platscuisines_V03(){
 		$req_prix="SELECT * FROM prix Where id=1";
 
 		$resultat_commande = $connexion->query($req_commande);
+    $resultat_prix = $connexion->query($req_prix);
 		$n=$resultat_commande->columnCount();
-		echo $n;
-		//for ($i = 1; $i <= 10; $i++) {
-			//echo $i;
-}
+    $res_commande = $resultat_commande->fetch();
+    $res_prix = $resultat_prix->fetch();
+      for ($i = 1; $i < $n; $i++){
+
+        $prixTotalCommande = $prixTotalCommande + ($res_prix[$i]*$res_commande[$i]);
+        echo "$res_prix[$i]*$res_commande[$i] <br/>";
+      }
+    echo $prixTotalCommande;
+    }
 	catch (PDOException $e) {
 		print "Error!: " . $e->getMessage() . "<br/>";
 		die();
