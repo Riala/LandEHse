@@ -222,13 +222,36 @@ function platscuisines_V03(){
      */
 
     // Déclaration et initialisation des variables
-
+	//String contenant le nom de l'utilisateur
+	$user = 'root';
+	//String contenant le mot de passe utilisateur
+	$pass = 'root';
+	//String contenant le nom de la base de données utilisée
+	$bd = 'bd_cdpplatscuisines';
     //Entier de récupération du numéro de commande
     $numCommande = $_POST['numCommande'];
-    echo $numCommande;
     // Float contenant le prix total de la commande
     $prixTotalCommande = 0;
 
+	try {
+		$connexion = new PDO('mysql:host=localhost;dbname='.$bd, $user, $pass);
+		$req_commande="SELECT * FROM commande WHERE id=$numCommande";
+		$req_prix="SELECT * FROM prix Where id=1";
+		
+		$result_commande = query($req_commande);
+		$n=$result_commande->columnCount()
+		echo $n;
+		//for ($i = 1; $i <= 10; $i++) {
+			//echo $i;
+}
+	} 
+	catch (PDOException $e) {
+		print "Error!: " . $e->getMessage() . "<br/>";
+		die();
+	}
+	echo "<br/>";
+	echo "<br/>";
+	
     //On calcule le prix d'une
     //On parcourt chaque ligne
     // for ($i = 0; $i <= 8; $i++)
