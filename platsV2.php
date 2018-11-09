@@ -215,7 +215,7 @@ for ($i = 0; $i <= 8; $i++)
 }
 
 function platscuisines_V03(){
-    /* Programme servant au calcul de la tendance en fonction des critères utilisateur
+    /* Programme servant au calcul de la tendance en fonction des critères utilisateur avec connexion à la base de données
      * Auteurs : Jean AGUIRRE et Maialen TEILLERY
      * Date : 24/10/2018
      * Tendance : pas encore calculée
