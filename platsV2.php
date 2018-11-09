@@ -237,21 +237,20 @@ function platscuisines_V03(){
 		$connexion = new PDO('mysql:host=localhost;dbname='.$bd, $user, $pass);
 		$req_commande="SELECT * FROM commande WHERE id=$numCommande";
 		$req_prix="SELECT * FROM prix Where id=1";
-		
-		$result_commande = query($req_commande);
-		$n=$result_commande->columnCount()
+
+		$resultat_commande = $connexion->query($req_commande);
+		$n=$resultat_commande->columnCount();
 		echo $n;
 		//for ($i = 1; $i <= 10; $i++) {
 			//echo $i;
 }
-	} 
 	catch (PDOException $e) {
 		print "Error!: " . $e->getMessage() . "<br/>";
 		die();
 	}
 	echo "<br/>";
 	echo "<br/>";
-	
+
     //On calcule le prix d'une
     //On parcourt chaque ligne
     // for ($i = 0; $i <= 8; $i++)
