@@ -218,10 +218,10 @@ function platscuisines_V03(){
     /* Programme servant au calcul de la tendance en fonction des critères utilisateur avec connexion à la base de données
      * Auteurs : Jean AGUIRRE et Maialen TEILLERY
      * Date : 09/11/2018
-     * Tendance : pas encore calculée
+     * Total commande = 1717
      */
 
-    // Déclaration et initialisation des variables
+  /********* Déclaration et initialisation des variables **********/
 	//String contenant le nom de l'utilisateur
 	$user = 'root';
 	//String contenant le mot de passe utilisateur
@@ -232,27 +232,49 @@ function platscuisines_V03(){
   $numCommande = $_POST['numCommande'];
   // Float contenant le prix total de la commande
   $prixTotalCommande = 0;
+  //Entier contenant le nombre de plat dans la commande
+  $n=0
+  //String conatenant la requête de la commande
+  $req_commande = "" ;
+  //String contenant le prix de chaque plat
+  $req_prix = "" ;
+  //$resultat_commande : objet contenant le résultat de la commande
+  //$resultat_prix : objet contenant tous les prix
+  //$res_commande : objet contenant une ligne de $resultat_commande
+  //$res_prix : objet contenant une ligne de $resultat_prix
 
+  /********************* Début des traitements *********************/
 	try {
+    //Connexion à la base de données
 		$connexion = new PDO('mysql:host=localhost;dbname='.$bd, $user, $pass);
+
+    //Initialisation des requêtes
 		$req_commande="SELECT * FROM commande WHERE id=$numCommande";
 		$req_prix="SELECT * FROM prix Where id=1";
 
+    //Interrogation de la base de données
 		$resultat_commande = $connexion->query($req_commande);
     $resultat_prix = $connexion->query($req_prix);
+
+    //On compte le nombre de plats dans la commande
 		$n=$resultat_commande->columnCount();
+
+    //On récupère la première ligne des requêtes
     $res_commande = $resultat_commande->fetch();
     $res_prix = $resultat_prix->fetch();
-      for ($i = 1; $i < $n; $i++){
 
-        $prixTotalCommande = $prixTotalCommande + ($res_prix[$i]*$res_commande[$i]);
-      }
-    echo "Total de la commande $numCommande : $prixTotalCommande";
+    //On calcule le total de la commande
+    for ($i = 1; $i < $n; $i++){
+      $prixTotalCommande = $prixTotalCommande + ($res_prix[$i]*$res_commande[$i]);
     }
-	catch (PDOException $e) {
-		print "Error!: " . $e->getMessage() . "<br/>";
+    //On ferme la conexion à la base de données
+    $connexion = null;
+    //On affiche le total de la commande
+    echo "Total de la commande $numCommande : $prixTotalCommande";
+
+  }	catch (PDOException $e) {
+    //Dès qu'il y a une erreur on affiche le message d'erreur et on arrête le programme
+    print "Error!: " . $e->getMessage() . "<br/>";
 		die();
 	}
-	echo "<br/>";
-	echo "<br/>";
 }
