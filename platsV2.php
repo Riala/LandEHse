@@ -277,5 +277,4 @@ function platscuisines_V03(){
     print "Error!: " . $e->getMessage() . "<br/>";
 		die();
 	}
-	//blablabla bip boop jean est passé par la
 }
