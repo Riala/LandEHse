@@ -246,9 +246,8 @@ function platscuisines_V03(){
       for ($i = 1; $i < $n; $i++){
 
         $prixTotalCommande = $prixTotalCommande + ($res_prix[$i]*$res_commande[$i]);
-        echo "$res_prix[$i]*$res_commande[$i] <br/>";
       }
-    echo $prixTotalCommande;
+    echo "Total de la commande $numCommande : $prixTotalCommande";
     }
 	catch (PDOException $e) {
 		print "Error!: " . $e->getMessage() . "<br/>";
@@ -256,25 +255,4 @@ function platscuisines_V03(){
 	}
 	echo "<br/>";
 	echo "<br/>";
-
-    //On calcule le prix d'une
-    //On parcourt chaque ligne
-    // for ($i = 0; $i <= 8; $i++)
-    // {
-    // 	for ($j = 0; $j <=3; $j++){
-    // 	$prixproduit=$commande[$i][$j]*$prix[$i][$j];
-    // 	$PrixTotalProduit[$i][$j]=$prixproduit;
-    //
-    // 	}
-    // }
-    //
-    // for ($i = 0; $i <= 8; $i++)
-    // {
-    // 	for ($j = 0; $j <=3; $j++){
-    // 	$prixTotalCommande=$prixTotalCommande+$PrixTotalProduit[$i][$j];
-    //
-    // 	}
-    // }
-    //On affiche le prix total
-    //echo "Prix total : " . $prixTotalCommande;
 }
