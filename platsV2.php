@@ -217,7 +217,7 @@ for ($i = 0; $i <= 8; $i++)
 function platscuisines_V03(){
     /* Programme servant au calcul de la tendance en fonction des critères utilisateur avec connexion à la base de données
      * Auteurs : Jean AGUIRRE et Maialen TEILLERY
-     * Date : 09/11/2018
+     * Date : 13/11/2018
      * Total commande = 1717
      */
 
