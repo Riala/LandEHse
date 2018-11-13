@@ -233,11 +233,11 @@ function platscuisines_V03(){
   // Float contenant le prix total de la commande
   $prixTotalCommande = 0;
   //Entier contenant le nombre de plat dans la commande
-  $n=0
+  $n=0 ;
   //String conatenant la requête de la commande
-  $req_commande = "" ;
+  $req_commande = "";
   //String contenant le prix de chaque plat
-  $req_prix = "" ;
+  $req_prix = "";
   //$resultat_commande : objet contenant le résultat de la commande
   //$resultat_prix : objet contenant tous les prix
   //$res_commande : objet contenant une ligne de $resultat_commande
