@@ -278,3 +278,68 @@ function platscuisines_V03(){
 		die();
 	}
 }
+
+function platscuisines_V04(){
+    /* Programme servant au calcul de la tendance en fonction des critères utilisateur avec connexion à la base de données
+     * Auteurs : Jean AGUIRRE et Maialen TEILLERY
+     * Date : 13/11/2018
+     * Total commande = 1717
+     */
+
+  /********* Déclaration et initialisation des variables **********/
+  //Entier de récupération du numéro de commande
+  $numCommande = $_POST['numCommande'];
+  // Float contenant le prix total de la commande
+  $prixTotalCommande = 0;
+  //String contenant le nom de l'host
+  $host = 'localhost';
+	//String contenant le nom de l'utilisateur
+	$user = 'root';
+	//String contenant le mot de passe utilisateur
+	$pass = 'root';
+	//String contenant le nom de la base de données utilisée
+	$bd = 'bd_cdpplatscuisines';
+  //Entier contenant le nombre de plat dans la commande
+  $n=0 ;
+  //String conatenant la requête de la commande
+  $req_commande = "";
+  //String contenant le prix de chaque plat
+  $req_prix = "";
+  //$resultat_commande : objet contenant le résultat de la commande
+  //$resultat_prix : objet contenant tous les prix
+  //$res_commande : objet contenant une ligne de $resultat_commande
+  //$res_prix : objet contenant une ligne de $resultat_prix
+
+  /********************* Début des traitements *********************/
+	try {
+    //Connexion à la base de données
+		$connexion = mysqli_connect($host, $bd, $user, $pass);
+  }	catch (mysqli_sql_exception  $e) {
+    //Dès qu'il y a une erreur on affiche le message d'erreur et on arrête le programme
+    print "Error!: " . $e->getMessage() . "<br/>";
+		die();
+	}
+    //Initialisation des requêtes
+		$req_commande="SELECT * FROM commande WHERE id=$numCommande";
+		$req_prix="SELECT * FROM prix Where id=1";
+
+    //Interrogation de la base de données
+		$resultat_commande = mysqli_query($connexion, $req_commande);
+    $resultat_prix = mysqli_query($connexion, $req_prix);
+
+    //On compte le nombre de plats dans la commande
+		$n=mysqli_field_count ($resultat_commande);
+
+    //On récupère la première ligne des requêtes
+    $res_commande = mysqli_fetch_assoc($resultat_commande);
+    $res_prix = mysqli_fetch_assoc($resultat_prix);
+
+    //On calcule le total de la commande
+    for ($i = 1; $i < $n; $i++){
+      $prixTotalCommande = $prixTotalCommande + ($res_prix[$i]*$res_commande[$i]);
+    }
+    //On ferme la conexion à la base de données
+    $connexion = null;
+    //On affiche le total de la commande
+    echo "Total de la commande $numCommande : $prixTotalCommande";
+}
