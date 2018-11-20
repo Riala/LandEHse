@@ -315,7 +315,7 @@ function platscuisines_V04(){
   /********************* Début des traitements *********************/
 	try {
     //Connexion à la base de données
-		$connexion = mysqli_connect($host, $user, $pass, $bd);
+		$connexion = mysqli_connect($host, $bd, $user, $pass);
   }	catch (mysqli_sql_exception  $e) {
     //Dès qu'il y a une erreur on affiche le message d'erreur et on arrête le programme
     print "Error!: " . $e->getMessage() . "<br/>";
@@ -330,11 +330,11 @@ function platscuisines_V04(){
     $resultat_prix = mysqli_query($connexion, $req_prix);
 
     //On compte le nombre de plats dans la commande
-		$n=mysqli_num_fields ($resultat_commande);
+		$n=mysqli_field_count ($resultat_commande);
 
     //On récupère la première ligne des requêtes
-    $res_commande = mysqli_fetch_array($resultat_commande);
-    $res_prix = mysqli_fetch_array($resultat_prix);
+    $res_commande = mysqli_fetch_assoc($resultat_commande);
+    $res_prix = mysqli_fetch_assoc($resultat_prix);
 
     //On calcule le total de la commande
     for ($i = 1; $i < $n; $i++){
