@@ -337,7 +337,7 @@ function platscuisines_V04(){
     $res_prix = mysqli_fetch_array($resultat_prix);
 
     //On calcule le total de la commande
-    for ($i = 1; $i < $n; $i++){
+    for ($i = 1; $i < $n-1; $i++){
       $prixTotalCommande = $prixTotalCommande + ($res_prix[$i]*$res_commande[$i]);
     }
     //On ferme la conexion à la base de données
