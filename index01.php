@@ -1,4 +1,4 @@
 <?php
-    include 'platsV3.php';
+    include 'previsionCoutsPlatsV1.php';
 
-    platscuisines_V04();
+    previsionCoutsPlats_V01();
