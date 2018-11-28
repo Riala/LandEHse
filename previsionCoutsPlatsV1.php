@@ -71,6 +71,8 @@ function previsionCoutsPlats_V01(){
 
     $resultatCateg = mysqli_query($connexion, $reqCategorie);
     var_dump($resultatCateg);
+
+    
     //On ferme la conexion à la base de données
     $connexion = null;
 }
